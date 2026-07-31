@@ -1,16 +1,18 @@
-name: Deployment
+name: Deployment (Container)
 on:
   push:
     branches:
       - main
       - dev
 env:
+  CACHE_KEY: node-deps
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
     environment:
       name: testing
     env:
+      MONGODB_CONNECTION_PROTOCOL: ${{ secrets.MONGODB_CONNECTION_PROTOCOL }}
       MONGODB_CLUSTER_ADDRESS: ${{ secrets.MONGODB_CLUSTER_ADDRESS }}
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
