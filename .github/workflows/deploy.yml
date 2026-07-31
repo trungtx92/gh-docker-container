@@ -11,7 +11,7 @@ jobs:
     environment:
       name: testing
     env:
-      MONGODB_CLUSTER_ADDRESS: sqsumdw.mongodb.net
+      MONGODB_CLUSTER_ADDRESS: ${{ secrets.MONGODB_CLUSTER_ADDRESS }}
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
