@@ -9,7 +9,7 @@ env:
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
-    environment:
+    environment: 
       name: testing
     env:
       MONGODB_CONNECTION_PROTOCOL: ${{ secrets.MONGODB_CONNECTION_PROTOCOL }}
