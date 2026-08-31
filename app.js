@@ -10,4 +10,3 @@ app.use(bodyParser.json());
 app.use(eventRoutes);
 
 app.listen(process.env.PORT);
-"This code created by AI"
