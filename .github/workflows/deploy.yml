@@ -19,6 +19,7 @@ jobs:
       - name: Lint code
         run: npm run lint
   test:
+    needs: lint
     environment: 
       name: testing
     runs-on: ubuntu-latest
