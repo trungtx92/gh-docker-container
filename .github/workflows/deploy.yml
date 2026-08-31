@@ -9,6 +9,15 @@ env:
   CACHE_KEY: node-deps
   MONGODB_DB_NAME: gha-demo
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Load & cache dependencies
+        uses: ./.github/actions/catched-deps
+      - name: Lint code
+        run: npm run lint
   test:
     environment: 
       name: testing
@@ -30,8 +39,6 @@ jobs:
     steps:
       - name: Get Code
         uses: actions/checkout@v3
-      - name: Load & cache dependencies
-        uses: ./.github/actions/catched-deps
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
