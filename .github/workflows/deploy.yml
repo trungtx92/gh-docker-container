@@ -66,3 +66,8 @@ jobs:
         run: |        
           echo "MONGODB_USERNAME ${{ secrets.MONGODB_USERNAME }}"
           echo "MONGODB_DB_NAME ${{ env.MONGODB_DB_NAME }}"
+  information:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run custom actions
+        uses: ./.github/actions/deploy-s3-javascript
