@@ -20,5 +20,16 @@
   "devDependencies": {
     "@playwright/test": "^1.25.1",
     "playwright": "^1.25.1"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungtx92/gh-docker-container.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trungtx92/gh-docker-container/issues"
+  },
+  "homepage": "https://github.com/trungtx92/gh-docker-container#readme"
 }
