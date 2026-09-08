@@ -1,5 +1,17 @@
 name: 'Deploy to S3'
 description: 'Deploys a JavaScript project to an S3 bucket'
+inputs:
+  bucket-name:
+    description: 'The name of the S3 bucket to deploy to'
+    required: true
+  bucket-region:
+    description: 'The AWS region of the S3 bucket'
+    required: false
+    default: 'us-east-1'
+  dist-folder:
+    description: 'The folder containing the build artifacts to deploy'
+    required: true
+    default: 'dist'
 runs:
   using: 'node24'
   main: 'main.js'
