@@ -62,14 +62,21 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Output information
-        run: |        
-          echo "MONGODB_USERNAME ${{ secrets.MONGODB_USERNAME }}"
-          echo "MONGODB_DB_NAME ${{ env.MONGODB_DB_NAME }}"
-  information:
-    runs-on: ubuntu-latest
-    steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Run custom actions
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-folder
+          path: ./dist
+      - name: Output contents
+        run: ls
+      - name: Deploy site
         uses: ./.github/actions/deploy-s3-javascript
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        with:
+          bucket-name: gha-custom-action-hosting
+          #bucket-region: us-east-1
+          dist-folder: ./dist
