@@ -72,8 +72,8 @@ jobs:
       - name: Install dependencies
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Build project
-        run: npm run build
+      #- name: Build project
+      #  run: npm run build
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
