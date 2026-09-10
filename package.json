@@ -8,7 +8,7 @@
     "start": "node app.js",
     "test": "npx playwright test",
     "lint": "eslint .",
-    "build": "vite build"
+    "build": "mkdir -p dist && date > dist/build-info.txt && echo \"Random build id: $$\" >> dist/build-info.txt"
   },
   "keywords": [],
   "author": "",

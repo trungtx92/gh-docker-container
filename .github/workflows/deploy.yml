@@ -72,8 +72,8 @@ jobs:
       - name: Install dependencies
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm ci
-      #- name: Build project
-      #  run: npm run build
+      - name: Build project
+        run: npm run build
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -98,6 +98,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
-          bucket-name: gha-custom-action-hosting
+          bucket-name: gcp-gha-custom-action-hosting
           #bucket-region: us-east-1
           dist-folder: ./dist
