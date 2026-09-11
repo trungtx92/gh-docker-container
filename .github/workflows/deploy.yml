@@ -60,6 +60,8 @@ jobs:
         run: echo "MONGODB_USERNAME ${{ env.MONGODB_USERNAME }}"
   build:
     runs-on: ubuntu-latest
+    environment: 
+      name: testing
     steps:
       - name: Get code
         uses: actions/checkout@v3
