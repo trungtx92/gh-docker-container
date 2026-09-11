@@ -25,6 +25,8 @@ async function run() {
     await exec.exec(`gsutil -m rsync -r ${distFolder} ${gcs}`);
 
     core.notice(`Deployed ${distFolder} to ${gcs}`);
+    const websiteUrl = `https://storage.googleapis.com/${bucket}/index.html`;
+    core.setOutput('website-url', websiteUrl);
 }
 
 run().catch((error) => core.setFailed(error.message));

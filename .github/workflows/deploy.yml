@@ -95,6 +95,7 @@ jobs:
       - name: Output contents
         run: ls
       - name: Deploy site
+        id: deploy
         uses: ./.github/actions/deploy-s3-javascript
         env:
           GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
@@ -102,3 +103,5 @@ jobs:
           bucket-name: gcp-gha-custom-action-hosting
           bucket-region: us-east-1
           dist-folder: ./dist
+      - name: Output website URL
+        run: echo "Website URL ${{ steps.deploy.outputs.website-url }}"

@@ -12,6 +12,9 @@ inputs:
     description: 'The folder containing the build artifacts to deploy'
     required: true
     default: 'dist'
+outputs:
+  website-url:
+    description: 'The URL of the deployed site'
 runs:
   using: 'node24'
   main: 'main.js'
