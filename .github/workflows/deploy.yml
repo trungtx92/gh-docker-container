@@ -95,9 +95,9 @@ jobs:
       - name: Deploy site
         uses: ./.github/actions/deploy-s3-javascript
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GCP_ACCESS_KEY_ID: ${{ secrets.GCP_ACCESS_KEY_ID }}
+          GCP_SECRET_ACCESS_KEY: ${{ secrets.GCP_SECRET_ACCESS_KEY }}
         with:
           bucket-name: gcp-gha-custom-action-hosting
-          #bucket-region: us-east-1
+          bucket-region: us-east-1
           dist-folder: ./dist
