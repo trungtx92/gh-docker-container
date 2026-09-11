@@ -1,11 +1,11 @@
-name: 'Deploy to S3'
-description: 'Deploys a JavaScript project to an S3 bucket'
+name: 'Deploy to GCS'
+description: 'Deploys a JavaScript project to an GCS bucket'
 inputs:
   bucket-name:
-    description: 'The name of the S3 bucket to deploy to'
+    description: 'The name of the GCS bucket to deploy to'
     required: true
   bucket-region:
-    description: 'The AWS region of the S3 bucket'
+    description: 'The AWS region of the GCS bucket'
     required: false
     default: 'us-east-1'
   dist-folder:
