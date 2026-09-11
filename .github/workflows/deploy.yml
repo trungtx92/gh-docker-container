@@ -95,7 +95,6 @@ jobs:
       - name: Deploy site
         uses: ./.github/actions/deploy-s3-javascript
         env:
-          GCP_ACCESS_KEY_ID: ${{ secrets.GCP_ACCESS_KEY_ID }}
           GCP_SECRET_ACCESS_KEY: ${{ secrets.GCP_SECRET_ACCESS_KEY }}
         with:
           bucket-name: gcp-gha-custom-action-hosting
