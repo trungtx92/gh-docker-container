@@ -1,19 +1,30 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
 const exec = require('@actions/exec');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
 
-function run() {
+async function run() {
     const bucket = core.getInput('bucket-name', { required: true });
     const bucketRegion = core.getInput('bucket-region', { required: true });
     const distFolder = core.getInput('dist-folder', { required: true });
 
-    // 2) Upload the files to the GCS bucket
-    const gcs = `gs://${bucket}`;
-    // GCP_ACCESS_KEY_ID = process.env.GCP_ACCESS_KEY_ID;
-    GCP_SERVICE_ACCOUNT_KEY = process.env.GCP_SERVICE_ACCOUNT_KEY;
-    exec.exec(`gsutil -m rsync -r ${distFolder} ${gcs}`);
+    const serviceAccountKey = process.env.GCP_SERVICE_ACCOUNT_KEY;
+    if (!serviceAccountKey) {
+        throw new Error('GCP_SERVICE_ACCOUNT_KEY environment variable is required');
+    }
 
-    core.notice('Hello from deploy-s3-javascript action!');
+    const keyFilePath = path.join(os.tmpdir(), 'gcp-key.json');
+    fs.writeFileSync(keyFilePath, serviceAccountKey);
+
+    // Authenticate gcloud/gsutil using the service account key
+    await exec.exec(`gcloud auth activate-service-account --key-file=${keyFilePath}`);
+
+    // Upload the files to the GCS bucket
+    const gcs = `gs://${bucket}`;
+    await exec.exec(`gsutil -m rsync -r ${distFolder} ${gcs}`);
+
+    core.notice(`Deployed ${distFolder} to ${gcs}`);
 }
 
-run();
+run().catch((error) => core.setFailed(error.message));
